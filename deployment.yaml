@@ -5,6 +5,7 @@ metadata:
   labels:
     app: argocd-example
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: argocd-example
