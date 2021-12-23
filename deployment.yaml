@@ -1,31 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argocd-example-deployment
-  labels:
-    app: argocd-example
+  name: simple-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: argocd-example
+      app: trivial-go-web-app
   template:
     metadata:
       labels:
-        app: argocd-example
+        app: trivial-go-web-app
     spec:
       containers:
-        - name: nginx
-          image: nginx
-          imagePullPolicy: Always
+        - name: webserver-simple
+          image: docker.io/kostiscodefresh/gitops-simple-app:v1.0
           ports:
-            - containerPort: 80
-              name: http
-          volumeMounts:
-            - mountPath: /app
-              name: cm
-      volumes:
-        - name: cm
-          configMap:
-            name: argocd-example-configmap
-
+            - containerPort: 8080
