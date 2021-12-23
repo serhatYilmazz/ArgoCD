@@ -20,4 +20,11 @@ spec:
           ports:
             - containerPort: 80
               name: http
+          volumeMounts:
+            - mountPath: /app
+              name: cm
+      volumes:
+        - name: cm
+          configMap:
+            name: argocd-example-configmap
 
