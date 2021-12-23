@@ -15,7 +15,7 @@ spec:
         app: argocd-example
     spec:
       containers:
-        - name: nginx:stable
+        - name: nginx
           image: nginx
           imagePullPolicy: Always
           ports:
