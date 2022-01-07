@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: nginx
 spec:
   generators:
   - list:
@@ -12,7 +12,7 @@ spec:
         url: https://kubernetes.default.svc
   template:
     metadata:
-      name: '{{cluster}}-guestbook'
+      name: '{{cluster}}-nginx'
     spec:
       project: default
       source:
@@ -21,4 +21,4 @@ spec:
         path: nginx-{{cluster}}
       destination:
         server: '{{url}}'
-        namespace: guestbook
+        namespace: nginx
