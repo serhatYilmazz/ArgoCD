@@ -21,4 +21,4 @@ spec:
         path: nginx-{{cluster}}
       destination:
         server: '{{url}}'
-        namespace: argocd
+        namespace: argo-demo
