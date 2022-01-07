@@ -1,6 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: nginx
+namespace: argocd
+nameSuffix: -dev
 resources:
   - config.yaml
   - deployment.yaml
