@@ -12,16 +12,9 @@ spec:
       labels:
         app: nginx
     spec:
-      volumes:
-        - name: example
-          configMap:
-            name: argocd-example-configmap
       containers:
         - name: nginx
           image: nginx
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          volumeMounts:
-            - mountPath: /app
-              name: example
