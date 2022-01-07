@@ -6,9 +6,9 @@ spec:
   generators:
   - list:
       elements:
-      - cluster: engineering-dev
+      - cluster: dev
         url: https://kubernetes.default.svc
-      - cluster: engineering-prod
+      - cluster: prod
         url: https://kubernetes.default.svc
   template:
     metadata:
@@ -16,9 +16,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj-labs/applicationset.git
+        repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: examples/list-generator/guestbook/{{cluster}}
+        path: nginx-{{cluster}}
       destination:
         server: '{{url}}'
         namespace: guestbook
