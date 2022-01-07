@@ -1,54 +1,30 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: nginx
-# spec:
-#   # generators:
-#   # - list:
-#   #     elements:
-#   #     - cluster: dev
-#   #       url: https://kubernetes.default.svc
-#   #     - cluster: prod
-#   #       url: https://kubernetes.default.svc
-#   generators:
-#     - git:
-#         repoURL: https://github.com/serhatYilmazz/ArgoCD
-#         revision: HEAD
-#         files:
-#         - path: "cluster-config/**/config.json"
-#   template:
-#     metadata:
-#       name: '{{cluster.env}}-nginx'
-#     spec:
-#       project: default
-#       source:
-#         repoURL: https://github.com/serhatYilmazz/ArgoCD
-#         targetRevision: HEAD
-#         path: nginx-{{cluster.env}}
-#       destination:
-#         server: '{{url}}'
-#         namespace: argo-demo
-
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons
+  name: nginx
 spec:
+  # generators:
+  # - list:
+  #     elements:
+  #     - cluster: dev
+  #       url: https://kubernetes.default.svc
+  #     - cluster: prod
+  #       url: https://kubernetes.default.svc
   generators:
-  - git:
-      repoURL: https://github.com/argoproj-labs/applicationset.git
-      revision: HEAD
-      directories:
-      - path: examples/git-generator-directory/cluster-addons/*
+    - git:
+        repoURL: https://github.com/serhatYilmazz/ArgoCD
+        revision: HEAD
+        files:
+        - path: "cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{path[0]}}'
+      name: '{{cluster.env}}-nginx'
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj-labs/applicationset.git
+        repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: '{{path}}'
+        path: nginx-{{cluster.env}}
       destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        server: '{{url}}'
+        namespace: argocd
