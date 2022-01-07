@@ -3,22 +3,28 @@ kind: ApplicationSet
 metadata:
   name: nginx
 spec:
+  # generators:
+  # - list:
+  #     elements:
+  #     - cluster: dev
+  #       url: https://kubernetes.default.svc
+  #     - cluster: prod
+  #       url: https://kubernetes.default.svc
   generators:
-  - list:
-      elements:
-      - cluster: dev
-        url: https://kubernetes.default.svc
-      - cluster: prod
-        url: https://kubernetes.default.svc
+    - git:
+        repoURL: https://github.com/serhatYilmazz/ArgoCD
+        revision: HEAD
+        files:
+        - path: "cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{cluster}}-nginx'
+      name: '{{cluster.env}}-nginx'
     spec:
       project: default
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: nginx-{{cluster}}
+        path: nginx-{{cluster.env}}
       destination:
         server: '{{url}}'
         namespace: argo-demo
