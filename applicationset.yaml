@@ -18,13 +18,13 @@ spec:
   #       - path: "cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{cluster.env}}-nginx'
+      name: '{{cluster}}-nginx'
     spec:
       project: default
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: nginx-{{cluster.env}}
+        path: nginx-{{cluster}}
       destination:
         server: '{{url}}'
         namespace: argocd
