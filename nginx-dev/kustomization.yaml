@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: argocd
 nameSuffix: -dev
 resources:
-  - ../base/config.yaml
-  - ../base/deployment.yaml
-  - ../base/service.yaml
+  - ../base
+  - ../base
+  - ../base
