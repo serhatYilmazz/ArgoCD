@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: argocd
 nameSuffix: -stage
 resources:
-  - ../nginx/config.yaml
-  - ../nginx/deployment.yaml
-  - ../nginx/service.yaml
+  - ../base/config.yaml
+  - ../base/deployment.yaml
+  - ../base/service.yaml
