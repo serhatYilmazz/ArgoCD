@@ -4,5 +4,3 @@ namespace: argocd
 nameSuffix: -prod
 resources:
   - ../base
-  - ../base
-  - ../base
