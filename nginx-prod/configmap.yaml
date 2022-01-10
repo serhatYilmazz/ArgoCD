@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-example-configmap
-  labels:
-    app: argocd-example
-data:
-  example: 'this is the example of configmap as volume'
