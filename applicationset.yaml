@@ -3,7 +3,7 @@ kind: ApplicationSet
 metadata:
   name: nginx
 spec:
-  generators:
+  #generators:
   # - list:
   #     elements:
   #     - cluster: dev
