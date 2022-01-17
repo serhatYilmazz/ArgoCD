@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: argo
 resources: 
   - example-wf.yaml
-  # - cron-workflow.yaml
+  - cron-workflow.yaml
