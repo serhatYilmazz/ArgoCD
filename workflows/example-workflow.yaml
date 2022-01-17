@@ -2,11 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: steps-
-  namespace: argo
   name: workflow
 spec:
   entrypoint: hello           # We reference our first "template" here
-
   templates:
   - name: hello               # The first "template" in this Workflow, it is referenced by "entrypoint"
     steps:                    # The type of this "template" is "steps"

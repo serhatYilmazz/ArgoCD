@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-local-arg-
+  name: workflow-with-slack-argocd
+spec:
+  entrypoint: whalesay
+  templates:
+    - name: whalesay
+      steps:
+        - - name: workflow-beginning-slack-notification
+            templateRef:
+              name: send-slack
+              template: send-beginning
+        - - name: denedim
+            template: deneme
+            continueOn:
+              failed: true
+        - - name: workflow-finishing-slack-notification
+            templateRef:
+              name: workflow-template-submittable
+              template: whalesay-notifications
+            arguments:
+              parameters:
+                - name: WORKFLOW_STATUS
+                  value: "{{steps.denedim.status}}"
+                - name: STARTED_AT
+                  value: "{{steps.denedim.startedAt}}"
+                - name: FINISHED_AT
+                  value: "{{steps.denedim.finishedAt}}"
+    - name: deneme
+      container:
+        image: alpine:3.7
+        command: [sh, -c]
+        args: ["exit 1"]
+      
