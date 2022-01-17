@@ -7,9 +7,9 @@ spec:
   concurrencyPolicy: "Replace"
   startingDeadlineSeconds: 0
   workflowSpec:
-    entrypoint: whalesay
+    entrypoint: whalesay-1
     templates:
-    - name: whalesay
+    - name: whalesay-1
       steps:
       - - name: hello
           template: whalesay    # We reference our second "template" here
@@ -24,10 +24,10 @@ spec:
           arguments:
             parameters: [{name: message, value: "hello1"}]
     - name: whalesay             # The second "template" in this Workflow, it is referenced by "hello"
-    inputs:
-      parameters:
-      - name: message
-    container:                # The type of this "template" is "container"
-      image: docker/whalesay
-      command: [cowsay]
-      args: ["{{inputs.parameters.message}}"]
+      inputs:
+        parameters:
+        - name: message
+      container:                # The type of this "template" is "container"
+        image: docker/whalesay
+        command: [cowsay]
+        args: ["{{inputs.parameters.message}}"]
