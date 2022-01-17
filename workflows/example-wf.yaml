@@ -12,6 +12,14 @@ spec:
         template: whalesay    # We reference our second "template" here
         arguments:
           parameters: [{name: message, value: "hello1"}]
+    - - name: hello-1
+        template: whalesay    # We reference our second "template" here
+        arguments:
+          parameters: [{name: message, value: "hello1"}]
+    - - name: hello-2
+        template: whalesay    # We reference our second "template" here
+        arguments:
+          parameters: [{name: message, value: "hello1"}]
 
   - name: whalesay             # The second "template" in this Workflow, it is referenced by "hello"
     inputs:
