@@ -3,7 +3,11 @@ kind: ApplicationSet
 metadata:
   name: nginx
 spec:
+<<<<<<< HEAD
   # generators:
+=======
+  #generators:
+>>>>>>> 5040ca08e85a7fe28cbf310faf544f605c0231b1
   # - list:
   #     elements:
   #     - cluster: dev
