@@ -21,7 +21,7 @@ spec:
     metadata:
       name: '{{cluster.env}}-nginx'
     spec:
-      project: default
+      project: ecomcore-finance
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
