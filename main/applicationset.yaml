@@ -28,4 +28,4 @@ spec:
         path: main/nginx-{{cluster.env}}
       destination:
         server: '{{url}}'
-        namespace: ecomcore
+        # namespace: ecomcore
