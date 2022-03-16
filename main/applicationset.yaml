@@ -28,3 +28,4 @@ spec:
         path: nginx-{{cluster.env}}
       destination:
         server: '{{url}}'
+        namespace: default
