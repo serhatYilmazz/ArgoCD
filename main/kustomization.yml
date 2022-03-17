@@ -3,3 +3,4 @@ kind: Kustomization
 resources: 
   # - ./applicationset.yaml
   - ./rollouts/canary
+  - ./rollouts/blue-green

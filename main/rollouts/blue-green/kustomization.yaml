@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
 - bluegreen-rollout.yaml
 - bluegreen-service.yaml
-- bluegreen-ingress.yaml
 - bluegreen-preview-service.yaml
-- bluegreen-preview-ingress.yaml
+- virtual-service.yaml
+- gateway.yaml
