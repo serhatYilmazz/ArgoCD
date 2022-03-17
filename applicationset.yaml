@@ -13,7 +13,7 @@ spec:
     metadata:
       name: 'appset-generator'
     spec:
-      project: platform
+      project: default
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
