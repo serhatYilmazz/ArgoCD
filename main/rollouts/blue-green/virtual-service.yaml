@@ -18,4 +18,4 @@ spec:
         host: bluegreen-demo.argocd.svc.cluster.local
         port:
           number: 80
-        weight: 100
+      weight: 100
