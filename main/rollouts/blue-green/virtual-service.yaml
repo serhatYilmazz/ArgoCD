@@ -14,9 +14,7 @@ spec:
         host: bluegreen-demo-preview.argo-rollout-demo.svc.cluster.local
         port:
           number: 80
-      weight: 100
     - destination:
         host: bluegreen-demo.svc.cluster.local
         port:
           number: 80
-      weight: 0
