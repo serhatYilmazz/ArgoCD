@@ -42,7 +42,7 @@ spec:
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: {{app.path}}
+        path: '{{app.path}}'
       destination:
         server: '{{url}}'
         namespace: rollouts-demo
