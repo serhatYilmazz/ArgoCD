@@ -12,20 +12,37 @@ spec:
   #     - cluster: prod
   #       url: https://kubernetes.default.svc
   # generators:
+   
+  #   - git:
+  #       repoURL: https://github.com/serhatYilmazz/ArgoCD
+  #       revision: HEAD
+  #       files:
+  #       - path: "main/cluster-config/**/config.json"
+  # template:
+  #   metadata:
+  #     name: '{{cluster.env}}-nginx'
+  #   spec:
+  #     project: default
+  #     source:
+  #       repoURL: https://github.com/serhatYilmazz/ArgoCD
+  #       targetRevision: HEAD
+  #       path: main/nginx-{{cluster.env}}
+  #     destination:
+  #       server: '{{url}}'
     - git:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         revision: HEAD
         files:
-        - path: "main/cluster-config/**/config.json"
+        - path: "main/rollouts/applications/config.json"
   template:
     metadata:
-      name: '{{cluster.env}}-nginx'
+      name: '{{app.name}}'
     spec:
-      project: ecomcore-finance
+      project: default
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: main/nginx-{{cluster.env}}
+        path: {{app.path}}
       destination:
         server: '{{url}}'
-        # namespace: ecomcore
+        namespace: rollouts-demo
