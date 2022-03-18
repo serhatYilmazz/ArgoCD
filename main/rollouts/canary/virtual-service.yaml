@@ -6,7 +6,7 @@ spec:
   gateways:
   - rollouts-demo-gateway
   hosts:
-  - '*'
+  - 'rollout.example'
   http:
   - name: primary
     route:

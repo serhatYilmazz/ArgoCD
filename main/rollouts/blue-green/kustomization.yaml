@@ -7,3 +7,5 @@ resources:
 - bluegreen-preview-service.yaml
 - virtual-service.yaml
 - gateway.yaml
+
+namespace: argo-rollout-demo
