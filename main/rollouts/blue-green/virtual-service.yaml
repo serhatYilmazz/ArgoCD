@@ -11,11 +11,11 @@ spec:
   - name: primary
     route:
     - destination:
-        host: bluegreen-demo-preview.argocd.svc.cluster.local
+        host: bluegreen-demo-preview.argo-rollout-demo.svc.cluster.local
         port:
           number: 80
     - destination:
-        host: bluegreen-demo.argocd.svc.cluster.local
+        host: bluegreen-demo.argo-rollout-demo.svc.cluster.local
         port:
           number: 80
       weight: 100
