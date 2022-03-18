@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rollouts-demo
+  name: canary-demo
 spec:
   replicas: 5
   strategy:
@@ -28,15 +28,15 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: rollouts-demo
+      app: canary-demo
   template:
     metadata:
       labels:
-        app: rollouts-demo
+        app: canary-demo
         istio-injection: enabled
     spec:
       containers:
-      - name: rollouts-demo
+      - name: canary-demo
         image: argoproj/rollouts-demo:yellow
         ports:
         - name: http
