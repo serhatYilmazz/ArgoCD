@@ -1,14 +1,14 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: canary-demo-vsvc-stable
+  name: canary-demo-stable-vsvc
 spec:
   gateways:
   - rollouts-demo-gateway
   hosts:
   - 'canary.example'
   http:
-  - name: primary
+  - name: stable
     route:
     - destination:
         host: rollouts-demo-stable.argo-rollout-demo.svc.cluster.local
@@ -26,7 +26,7 @@ spec:
   hosts:
   - 'canary-preview.example'
   http:
-  - name: primary
+  - name: canary
     route:
     - destination:
         host: rollouts-demo-canary.argo-rollout-demo.svc.cluster.local

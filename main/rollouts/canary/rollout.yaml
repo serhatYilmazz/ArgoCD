@@ -11,9 +11,12 @@ spec:
       trafficRouting:
         istio:
           virtualServices:
-          - name: rollouts-demo-vsvc # At least one virtualService is required
+          - name: canary-demo-stable-vsvc # At least one virtualService is required
             routes:
             - primary # At least one route is required
+          - name: canary-demo-canary-vsvc # At least one virtualService is required
+            routes:
+            - canary # At least one route is required
       steps:
       - setWeight: 5
       - pause: {}
