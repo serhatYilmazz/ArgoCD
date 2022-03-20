@@ -11,10 +11,7 @@ spec:
       trafficRouting:
         istio:
           virtualServices:
-          - name: canary-demo-stable-vsvc # At least one virtualService is required
-            routes:
-            - stable # At least one route is required
-          - name: canary-demo-canary-vsvc # At least one virtualService is required
+          - name: canary-demo-vsvc # At least one virtualService is required
             routes:
             - canary # At least one route is required
       steps:
@@ -40,7 +37,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:yellow
         ports:
         - name: http
           containerPort: 8080
