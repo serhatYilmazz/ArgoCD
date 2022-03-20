@@ -15,6 +15,11 @@ spec:
         port:
           number: 80
       weight: 100
+    - destination:
+        host: rollouts-demo-canary.argo-rollout-demo.svc.cluster.local
+        port:
+          number: 80
+      weight: 0
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -33,3 +38,8 @@ spec:
         port:
           number: 80
       weight: 0
+    - destination:
+        host: rollouts-demo-stable.argo-rollout-demo.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
