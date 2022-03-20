@@ -14,9 +14,9 @@ spec:
           - name: canary-demo-stable-vsvc # At least one virtualService is required
             routes:
             - stable # At least one route is required
-          # - name: canary-demo-canary-vsvc # At least one virtualService is required
-          #   routes:
-          #   - canary # At least one route is required
+          - name: canary-demo-canary-vsvc # At least one virtualService is required
+            routes:
+            - canary # At least one route is required
       steps:
       - setWeight: 5
       - pause: {}
