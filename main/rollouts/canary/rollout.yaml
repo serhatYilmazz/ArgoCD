@@ -8,11 +8,15 @@ spec:
     canary:
       analysis: # Change 1 - Add Background Analysis
         templates:
-          - templateName: curl-smoke-test
-        startingStep: 2 # delay starting analysis run until setWeight: 20%
+          - templateName: test
+        startingStep: 1 # delay starting analysis run until setWeight: 20%
         args:
           - name: service-name
             value: rollouts-demo-canary
+          - name: color
+            value: yellow
+          - name: return500
+            value: 10
           # - name: canary-pod-hash
           #   valueFrom:
           #     podTemplateHashValue: Latest
