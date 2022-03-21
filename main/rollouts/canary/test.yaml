@@ -25,38 +25,5 @@ spec:
                       args:
                         - /bin/bash
                         - -c
-                        - |
-                          data="[{\"color\": \"{{ args.color }}\", \"return500\": {{ args.return500 }}, \"delayLength\": 0}]"
-
-                          count=0
-                          successfulCount=0
-                          echo $data
-                          for ((i=0; i<1000; i++)); 
-                          do
-                              res=$(curl "http://{{ args.service-name }}/color);" -d "${data}" -v 2>&1 | grep -qs "200")
-                            if [ $? -eq 0 ]; then
-                              (( successfulCount+= 1))
-                              fi
-                            ((count += 1))
-                              #sleep 1
-                          #echo $count;echo
-                          done
-
-                          result=$(bc <<< "scale=2; $successfulCount/$count")
-
-                          echo "count: ${count}"
-                          echo "result: ${result}"
-                          echo "Scount: ${successfulCount}"
-                          echo
-
-                          isOk=$(bc <<< "scale=1; $result > .8")
-                          echo "isOk: ${isOk}"
-                          echo
-                          if [ $isOk -eq 1 ];then
-                            echo "Success"
-                            exit 0;
-                          else
-                            echo "Failed"
-                            exit 1;
-                          fi
+                        - 'apt-get update; apt-get upgrade -y; apt-get install curl -y; apt-get install bc -y; data="[{\"color\": \"{{ args.color }}\", \"return500\": {{ args.return500 }}, \"delayLength\": 0}]"; count=0; successfulCount=0; echo $data; for ((i=0; i<1000; i++)); do res=$(curl "http://{{ args.service-name }}/color" -d "${data}" -v 2>&1 | grep -qs "200"); if [ $? -eq 0 ]; then (( successfulCount+= 1)); fi; ((count += 1)); done; result=$(bc <<< "scale=2; $successfulCount/$count"); echo "count: ${count}"; echo "result: ${result}"; echo "Scount: ${successfulCount}"; echo; isOk=$(bc <<< "scale=1; $result > .8"); echo "isOk: ${isOk}"; echo; if [ $isOk -eq 1 ];then echo "Success"; exit 0; else echo "Failed"; exit 1; fi'
                   restartPolicy: Never
