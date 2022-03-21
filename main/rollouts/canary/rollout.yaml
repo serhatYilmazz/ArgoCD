@@ -14,9 +14,9 @@ spec:
           - name: service-name
             value: rollouts-demo-canary
           - name: color
-            value: red
+            value: green
           - name: return500
-            value: "10"
+            value: "55"
           # - name: canary-pod-hash
           #   valueFrom:
           #     podTemplateHashValue: Latest
@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:green
         ports:
         - name: http
           containerPort: 8080
