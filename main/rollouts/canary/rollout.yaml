@@ -6,6 +6,16 @@ spec:
   replicas: 5
   strategy:
     canary:
+      analysis: # Change 1 - Add Background Analysis
+        templates:
+          - templateName: curl-smoke-test
+        startingStep: 2 # delay starting analysis run until setWeight: 20%
+        args:
+          - name: service-name
+            value: rollouts-demo-canary
+          # - name: canary-pod-hash
+          #   valueFrom:
+          #     podTemplateHashValue: Latest
       canaryService: rollouts-demo-canary
       stableService: rollouts-demo-stable
       trafficRouting:
@@ -15,15 +25,11 @@ spec:
             routes:
             - canary # At least one route is required
       steps:
-      - setWeight: 5
-      - pause: {}
       - setWeight: 25
       - pause: {}
       - setWeight: 50
       - pause: {}
       - setWeight: 75
-      - pause: {}
-      - setWeight: 90
       - pause: {}
   revisionHistoryLimit: 2
   selector:
