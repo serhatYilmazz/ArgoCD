@@ -5,6 +5,11 @@ metadata:
   labels:
     app: bluegreen-demo
 spec:
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: false
+      activeService: bluegreen-demo
+      previewService: bluegreen-demo-preview
   replicas: 4
   revisionHistoryLimit: 1
   selector:
@@ -27,8 +32,3 @@ spec:
           requests:
             memory: 32Mi
             cpu: 5m
-  strategy:
-    blueGreen:
-      autoPromotionEnabled: false
-      activeService: bluegreen-demo
-      previewService: bluegreen-demo-preview
