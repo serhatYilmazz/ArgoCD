@@ -16,7 +16,7 @@ spec:
           - name: color
             value: yellow
           - name: return500
-            value: 10
+            value: "10"
           # - name: canary-pod-hash
           #   valueFrom:
           #     podTemplateHashValue: Latest
