@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: canary-demo
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      analysis: # Change 1 - Add Background Analysis
+        templates:
+          - templateName: test
+        startingStep: 1 # delay starting analysis run until setWeight: 20%
+        args:
+          - name: service-name
+            value: rollouts-demo-canary
+          - name: color
+            value: green
+          - name: return500
+            value: "55"
+          # - name: canary-pod-hash
+          #   valueFrom:
+          #     podTemplateHashValue: Latest
+      canaryService: rollouts-demo-canary
+      stableService: rollouts-demo-stable
+      trafficRouting:
+        istio:
+          virtualServices:
+          - name: canary-demo-vsvc # At least one virtualService is required
+            routes:
+            - canary # At least one route is required
+      steps:
+      - setWeight: 25
+      - pause: {}
+      - setWeight: 50
+      - pause: {}
+      - setWeight: 75
+      - pause: {}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: canary-demo
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        istio-injection: enabled
+    spec:
+      containers:
+      - name: canary-demo
+        image: argoproj/rollouts-demo:green
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: 32Mi
+            cpu: 5m

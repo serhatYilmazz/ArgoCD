@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: curl-smoke-test
+spec:
+  args:
+    # required
+    - name: service-name
+  metrics:
+      - name: smoke-test
+        provider:
+          job:
+            spec:
+              backoffLimit: 3
+              template:
+                metadata:
+                  annotations:
+                    sidecar.istio.io/inject: "false"
+                spec:
+                  containers:
+                    - name: main
+                      image: ubuntu:20.04
+                      args:
+                        - /bin/sh
+                        - -c
+                        - apt-get update; apt-get upgrade -y; apt-get install curl -y; resp=$(curl --http2 http://{{ args.service-name }}/color); echo $resp; if [ "$resp" != "\"yellow\"" ]; then exit 1; else exit 0; fi;
+                  restartPolicy: Never
