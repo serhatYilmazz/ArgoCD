@@ -15,11 +15,11 @@ spec:
             routes:
             - canary # At least one route is required
       steps:
-      - setWeight: 25
+      - setWeight: 10
       - pause: {}
-      - setWeight: 50
+      - setWeight: 33
       - pause: {}
-      - setWeight: 75
+      - setWeight: 90
       - pause: {}
   revisionHistoryLimit: 2
   selector:
