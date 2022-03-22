@@ -6,20 +6,6 @@ spec:
   replicas: 5
   strategy:
     canary:
-      analysis: # Change 1 - Add Background Analysis
-        templates:
-          - templateName: test
-        startingStep: 1 # delay starting analysis run until setWeight: 20%
-        args:
-          - name: service-name
-            value: rollouts-demo-canary
-          - name: color
-            value: green
-          - name: return500
-            value: "55"
-          # - name: canary-pod-hash
-          #   valueFrom:
-          #     podTemplateHashValue: Latest
       canaryService: rollouts-demo-canary
       stableService: rollouts-demo-stable
       trafficRouting:
