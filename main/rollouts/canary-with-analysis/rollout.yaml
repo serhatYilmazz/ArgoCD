@@ -14,7 +14,7 @@ spec:
           - name: service-name
             value: rollouts-demo-canary
           - name: color
-            value: red
+            value: blue
           - name: return500
             value: "10"
           # - name: canary-pod-hash
@@ -41,9 +41,11 @@ spec:
             - name: service-name
               value: rollouts-demo-canary
             - name: color
-              value: red
+              value: blue
             - name: return500
               value: "90"
+      - setWeight: 90
+      - pause: {duration: 45}
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -56,7 +58,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:blue
         ports:
         - name: http
           containerPort: 8080
