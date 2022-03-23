@@ -10,6 +10,7 @@ spec:
     - name: return500
   metrics:
       - name: smoke-test
+        failureLimit: 2
         provider:
           job:
             spec:
@@ -32,7 +33,7 @@ spec:
                           apt-get install bc -y; 
                           data="[{\"color\": \"{{ args.color }}\", \"return500\": {{ args.return500 }}, \"delayLength\": 0}]"; 
                           count=0; successfulCount=0; echo $data; 
-                          for ((i=0; i<1000; i++)); do 
+                          for ((i=0; i<300; i++)); do 
                             res=$(curl "http://{{ args.service-name }}/color" -d "${data}" -v 2>&1 | grep -qs "200"); 
                             if [ $? -eq 0 ]; then 
                               (( successfulCount+= 1)); fi; ((count += 1)); 
