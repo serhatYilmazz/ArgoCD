@@ -11,6 +11,7 @@ spec:
   metrics:
       - name: smoke-test
         failureLimit: 2
+        count: 5
         provider:
           job:
             spec:
