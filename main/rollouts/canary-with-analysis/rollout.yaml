@@ -9,12 +9,12 @@ spec:
       analysis: 
         templates:
           - templateName: smoke-test
-        startingStep: 1 # delay starting analysis run until setWeight: 20%
+        startingStep: 2 # delay starting analysis run until setWeight: 20%
         args:
           - name: service-name
             value: rollouts-demo-canary
           - name: color
-            value: green
+            value: red
           - name: return500
             value: "55"
           # - name: canary-pod-hash
@@ -30,11 +30,23 @@ spec:
             - canary # At least one route is required
       steps:
       - setWeight: 25
-      - pause: {}
+      - pause: {duration: 60}
       - setWeight: 50
-      - pause: {}
+      - pause: {duration: 60}
       - setWeight: 75
-      - pause: {}
+      - pause: {duration: 60}
+      - setWeight: 90
+      - pause: {duration: 60}
+      - analysis: 
+          templates:
+            - templateName: smoke-test
+          args:
+            - name: service-name
+              value: rollouts-demo-canary
+            - name: color
+              value: red
+            - name: return500
+              value: "90"
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -47,7 +59,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: argoproj/rollouts-demo:green
+        image: argoproj/rollouts-demo:red
         ports:
         - name: http
           containerPort: 8080
