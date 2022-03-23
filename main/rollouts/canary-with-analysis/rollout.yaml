@@ -14,7 +14,7 @@ spec:
           - name: service-name
             value: rollouts-demo-canary
           - name: color
-            value: red
+            value: blue
           - name: return500
             value: "10"
           # - name: canary-pod-hash
@@ -32,7 +32,7 @@ spec:
       - setWeight: 25
       - pause: {duration: 10}
       - setWeight: 50
-      - pause: {duration: 40}
+      - pause: {duration: 200}
       - setWeight: 75
       - analysis: 
           templates:
@@ -41,7 +41,7 @@ spec:
             - name: service-name
               value: rollouts-demo-canary
             - name: color
-              value: red
+              value: blue
             - name: return500
               value: "90"
       - setWeight: 90
