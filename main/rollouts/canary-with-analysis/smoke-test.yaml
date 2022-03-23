@@ -10,9 +10,9 @@ spec:
     - name: return500
   metrics:
       - name: smoke-test
-        failureLimit: 2
-        count: 3
-        interval: 10s
+        failureLimit: 1
+        count: 1
+        interval: 60s
         provider:
           job:
             spec:
