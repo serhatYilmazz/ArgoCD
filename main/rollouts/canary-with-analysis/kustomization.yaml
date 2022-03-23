@@ -6,6 +6,6 @@ resources:
   - virtual-service.yaml
   - rollout.yaml
   - services.yaml
-  - test.yaml
+  - smoke-test.yaml
 
 namespace: argo-rollout-demo
