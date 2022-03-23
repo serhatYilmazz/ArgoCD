@@ -9,8 +9,8 @@
     {
         "url": "https://kubernetes.default.svc",
         "app": {
-            "path": "main/rollouts/canary",
-            "name": "canary"
+            "path": "main/rollouts/canary-with-analysis",
+            "name": "canary-with-analysis"
         }
     }
 ]
