@@ -12,7 +12,7 @@ spec:
       - name: smoke-test
         failureLimit: 1
         count: 1
-        interval: 60s
+        interval: 5s
         provider:
           job:
             spec:

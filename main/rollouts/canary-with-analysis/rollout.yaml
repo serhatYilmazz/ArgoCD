@@ -32,7 +32,7 @@ spec:
       - setWeight: 25
       - pause: {duration: 10}
       - setWeight: 50
-      - pause: {duration: 10}
+      - pause: {duration: 40}
       - setWeight: 75
       - analysis: 
           templates:
