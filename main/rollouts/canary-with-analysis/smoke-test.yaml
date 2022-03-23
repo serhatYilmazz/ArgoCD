@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: smoke-test
+spec:
+  args:
+    # required
+    - name: service-name
+    - name: color
+    - name: return500
+  metrics:
+      - name: smoke-test
+        provider:
+          job:
+            spec:
+              backoffLimit: 3
+              template:
+                metadata:
+                  annotations:
+                    sidecar.istio.io/inject: "false"
+                spec:
+                  containers:
+                    - name: main
+                      image: ubuntu:20.04
+                      args:
+                        - /bin/bash
+                        - -c
+                        - >- 
+                          apt-get update; 
+                          apt-get upgrade -y; 
+                          apt-get install curl -y; 
+                          apt-get install bc -y; 
+                          data="[{\"color\": \"{{ args.color }}\", \"return500\": {{ args.return500 }}, \"delayLength\": 0}]"; 
+                          count=0; successfulCount=0; echo $data; 
+                          for ((i=0; i<1000; i++)); do 
+                            res=$(curl "http://{{ args.service-name }}/color" -d "${data}" -v 2>&1 | grep -qs "200"); 
+                            if [ $? -eq 0 ]; then 
+                              (( successfulCount+= 1)); fi; ((count += 1)); 
+                          done; 
+                          result=$(bc <<< "scale=2; $successfulCount/$count"); 
+                          echo "count: ${count}"; 
+                          echo "result: ${result}"; 
+                          echo "Scount: ${successfulCount}"; 
+                          echo; 
+                          isOk=$(bc <<< "scale=1; $result > .8"); 
+                          echo "isOk: ${isOk}"; echo; 
+                          if [ $isOk -eq 1 ];then 
+                            echo "Success"; exit 0; 
+                          else echo "Failed"; exit 1; 
+                          fi
+                  restartPolicy: Never
