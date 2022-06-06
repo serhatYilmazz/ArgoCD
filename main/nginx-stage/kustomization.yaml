@@ -4,3 +4,4 @@ namespace: finance
 nameSuffix: -stage
 resources:
   - ../base
+  - resource-post-sync-hook.yml
