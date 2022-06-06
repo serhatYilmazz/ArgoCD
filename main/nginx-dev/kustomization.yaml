@@ -5,3 +5,5 @@ nameSuffix: -dev
 resources:
   - ../base
   - resource-post-sync-hook.yml
+  - resource-sync-hook.yml
+  - resource-pre-sync-hook.yml
