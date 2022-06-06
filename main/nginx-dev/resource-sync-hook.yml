@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: app-slack-notification-dev
+  name: app-slack-notification-dev-sync
   annotations:
     argocd.argoproj.io/hook: Sync
     # argocd.argoproj.io/hook-delete-policy: HookSucceeded
