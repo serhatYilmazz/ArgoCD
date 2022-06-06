@@ -13,36 +13,37 @@ spec:
   #       url: https://kubernetes.default.svc
   # generators:
    
-  #   - git:
-  #       repoURL: https://github.com/serhatYilmazz/ArgoCD
-  #       revision: HEAD
-  #       files:
-  #       - path: "main/cluster-config/**/config.json"
-  # template:
-  #   metadata:
-  #     name: '{{cluster.env}}-nginx'
-  #   spec:
-  #     project: default
-  #     source:
-  #       repoURL: https://github.com/serhatYilmazz/ArgoCD
-  #       targetRevision: HEAD
-  #       path: main/nginx-{{cluster.env}}
-  #     destination:
-  #       server: '{{url}}'
     - git:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         revision: HEAD
         files:
-        - path: "main/rollouts/applications/config.json"
+        - path: "main/cluster-config/**/config.json"
   template:
     metadata:
-      name: '{{app.name}}'
+      name: '{{cluster.env}}-nginx'
     spec:
       project: default
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
-        path: '{{app.path}}'
+        path: main/nginx-{{cluster.env}}
       destination:
         server: '{{url}}'
-        namespace: rollouts-demo
+
+    # - git:
+    #     repoURL: https://github.com/serhatYilmazz/ArgoCD
+    #     revision: HEAD
+    #     files:
+    #     - path: "main/rollouts/applications/config.json"
+  # template:
+  #   metadata:
+  #     name: '{{app.name}}'
+  #   spec:
+  #     project: default
+  #     source:
+  #       repoURL: https://github.com/serhatYilmazz/ArgoCD
+  #       targetRevision: HEAD
+  #       path: '{{app.path}}'
+  #     destination:
+  #       server: '{{url}}'
+  #       namespace: rollouts-demo

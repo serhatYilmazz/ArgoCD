@@ -13,11 +13,11 @@ spec:
     metadata:
       name: 'appset-generator'
     spec:
-      project: default
+      project: resource-hook
       source:
         repoURL: https://github.com/serhatYilmazz/ArgoCD
         targetRevision: HEAD
         path: main
       destination:
         server: '{{url}}'
-        namespace: argocd
+        namespace: resource-hook
